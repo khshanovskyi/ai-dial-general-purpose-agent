@@ -39,6 +39,7 @@ class GeneralPurposeAgent:
         client: AsyncDial = AsyncDial(
             base_url=self.endpoint,
             api_key=api_key,
+            api_version=request.api_version,
         )
 
         chunks = await client.chat.completions.create(

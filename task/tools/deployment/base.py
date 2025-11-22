@@ -28,6 +28,7 @@ class DeploymentTool(BaseTool, ABC):
         client: AsyncDial = AsyncDial(
             base_url=self.endpoint,
             api_key=tool_call_params.api_key,
+            api_version='2025-01-01-preview'
         )
 
         arguments = json.loads(tool_call_params.tool_call.function.arguments)
