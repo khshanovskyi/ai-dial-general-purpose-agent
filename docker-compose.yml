@@ -44,7 +44,7 @@ services:
       'JAVA_OPTS': '-Dgflog.config=/opt/settings/gflog.xml'
       'LOG_DIR': '/app/log'
       'STORAGE_DIR': '/app/data'
-      'aidial.config.files': '["/opt/config/config.json"]'
+      'aidial.config.files': '["/opt/config/config.json", "/opt/config/keys.json"]'
       'aidial.storage.overrides': '{ "jclouds.filesystem.basedir": "data" }'
       'aidial.redis.singleServerConfig.address': 'redis://redis:6379'
     depends_on:
@@ -61,4 +61,23 @@ services:
       DIAL_URL: "http://core:8080"
       LOG_LEVEL: "INFO"
 
+  ddg-search:
+    image: khshanovskyi/ddg-mcp-server:latest
+    ports:
+      - "8051:8000"
+    environment:
+      LOG_LEVEL: "INFO"
+      MCP_TRANSPORT: "streamable-http"
+    restart: unless-stopped
+    mem_limit: 512M
+    cpus: 0.5
 
+  python-interpreter:
+    image: khshanovskyi/python-code-interpreter-mcp-server:latest
+    ports:
+      - "8050:8000"
+    environment:
+      LOG_LEVEL: "INFO"
+    restart: unless-stopped
+    mem_limit: 2G
+    cpus: 2.0

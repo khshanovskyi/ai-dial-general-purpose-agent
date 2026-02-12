@@ -1,10 +1,33 @@
 {
   "routes": {},
   "applications": {
-
+    "general-purpose-agent": {
+      "displayName": "General Purpose Agent",
+      "description": "General Purpose Agent. Equipped with: WEB search (DuckDuckGo via MCP), RAG search (supports PDF, TXT, CSV files), Python Code Interpreter (via MCP), Image Generation (model).",
+      "endpoint": "http://host.docker.internal:5030/openai/deployments/general-purpose-agent/chat/completions",
+      "inputAttachmentTypes": ["image/png", "image/jpeg", "application/pdf", "text/html", "text/plain", "text/csv"],
+      "forwardAuthToken": true
+    }
   },
   "models": {
-
+    "gpt-4o": {
+      "displayName": "GPT 4o",
+      "endpoint": "http://adapter-dial:5000/openai/deployments/gpt-4o/chat/completions",
+      "iconUrl": "http://localhost:3001/gpt4.svg",
+      "type": "chat"
+    },
+    "dall-e-3": {
+      "displayName": "DALL-E-3",
+      "endpoint": "http://adapter-dial:5000/openai/deployments/dall-e-3/chat/completions",
+      "iconUrl": "http://localhost:3001/gpt3.svg",
+      "type": "chat"
+    },
+    "claude-sonnet-3-7": {
+      "displayName": "Claude Sonnet 3.7",
+      "endpoint": "http://adapter-dial:5000/openai/deployments/claude-sonnet-3-7/chat/completions",
+      "iconUrl": "https://chat.lab.epam.com/themes/anthropic.svg",
+      "type": "chat"
+    }
   },
   "keys": {
     "dial_api_key": {
